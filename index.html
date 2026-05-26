@@ -1,0 +1,1545 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OR-benchmark · Empirical Rigor in Operations Research</title>
+  <meta name="description" content="Interactive companion to the case studies in 'Empirical Rigor Through Benchmarking in Operations Research'." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============================== TOP BAR ============================== -->
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">OR</span>
+    <div class="brand-text">
+      <div class="brand-title">OR-benchmark</div>
+      <div class="brand-sub">Empirical rigor in OR</div>
+    </div>
+  </div>
+
+  <nav class="topnav">
+    <span class="topnav-meta">Case study companion</span>
+    <button id="theme-toggle" class="theme-btn" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></svg>
+    </button>
+  </nav>
+</header>
+
+<div class="layout">
+
+  <!-- ============================== SIDEBAR ============================== -->
+  <aside class="sidebar" aria-label="Experiment list">
+    <nav class="side-nav">
+      <ul class="side-list" id="exp-list">
+
+        <li class="active" data-target="overview">
+          <span class="side-icon">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round" aria-hidden="true">
+              <rect x="2" y="2" width="5" height="5" rx="0.8"/>
+              <rect x="9" y="2" width="5" height="5" rx="0.8"/>
+              <rect x="2" y="9" width="5" height="5" rx="0.8"/>
+              <rect x="9" y="9" width="5" height="5" rx="0.8"/>
+            </svg>
+          </span>
+          <span class="side-label">Overview</span>
+        </li>
+
+        <li class="side-group">Canonical models</li>
+
+        <li data-target="exp-two-class">
+          <span class="side-icon">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="1" y="2" width="6" height="3" rx="0.6"/>
+              <rect x="1" y="11" width="6" height="3" rx="0.6"/>
+              <circle cx="12" cy="8" r="2.4"/>
+              <path d="M7 3.5 L 9.6 6"/>
+              <path d="M7 12.5 L 9.6 10"/>
+            </svg>
+          </span>
+          <span class="side-label">Two-class single-server queue</span>
+        </li>
+
+        <li data-target="exp-n-model">
+          <span class="side-icon">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="1" y="2" width="4.5" height="3" rx="0.6"/>
+              <rect x="1" y="11" width="4.5" height="3" rx="0.6"/>
+              <circle cx="13" cy="3.5" r="1.6"/>
+              <circle cx="13" cy="12.5" r="1.6"/>
+              <path d="M5.5 3.5 L 11.4 3.5"/>
+              <path d="M5.5 12.5 L 11.4 12.5"/>
+              <path d="M5.5 4.6 L 11.4 11.4" stroke-dasharray="1.4 1.4"/>
+            </svg>
+          </span>
+          <span class="side-label">N-Model</span>
+        </li>
+
+        <li class="side-group">Methodology</li>
+
+        <li data-target="exp-algorithms">
+          <span class="side-icon">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <polyline points="2,12 5,8 8,10 11,5 14,3"/>
+              <line x1="2" y1="14" x2="14" y2="14"/>
+            </svg>
+          </span>
+          <span class="side-label">Algorithm families</span>
+        </li>
+
+        <li data-target="exp-hyperparams">
+          <span class="side-icon">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" aria-hidden="true">
+              <line x1="2" y1="4" x2="14" y2="4"/>
+              <circle cx="6" cy="4" r="1.7" fill="currentColor" stroke="none"/>
+              <line x1="2" y1="8" x2="14" y2="8"/>
+              <circle cx="11" cy="8" r="1.7" fill="currentColor" stroke="none"/>
+              <line x1="2" y1="12" x2="14" y2="12"/>
+              <circle cx="4.5" cy="12" r="1.7" fill="currentColor" stroke="none"/>
+            </svg>
+          </span>
+          <span class="side-label">Hyperparameter sensitivity</span>
+        </li>
+
+        <li data-target="exp-masking">
+          <span class="side-icon">
+            <svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round" aria-hidden="true">
+              <path d="M 2 3 H 14 L 10 8 V 13 L 6 14 V 8 Z"/>
+            </svg>
+          </span>
+          <span class="side-label">Restricting the policy class</span>
+        </li>
+      </ul>
+    </nav>
+  </aside>
+
+  <!-- ============================== MAIN CONTENT ============================== -->
+  <main class="content">
+
+    <!-- ===== OVERVIEW ===== -->
+    <section id="overview" class="panel active">
+      <div class="panel-header">
+        <div>
+          <h1>Empirical Rigor Through Benchmarking in Operations Research</h1>
+          <div class="authors">
+            <span class="author">Jing Dong</span>
+            <span class="author-sep">·</span>
+            <span class="author">Daksh Mittal</span>
+            <span class="author-sep">·</span>
+            <span class="author">Hongseok Namkoong</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Paper card -->
+      <div class="card setup-card">
+        <div class="setup-grid setup-grid-wide">
+          <div class="setup-text">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>Companion to the paper</div>
+            <h2 class="setup-title">Empirical Findings Enabled by Structural Benchmarks</h2>
+            <p class="setup-lead">
+              Stochastic Operations Research has a rich tradition of deriving structural insights through theoretical analysis, with
+              parsimonious mathematical models yielding foundational results in sequential decision-making under uncertainty. Systematic
+              empirical evaluation, however, is often limited to small-scale numerical examples that are difficult to compare across
+              studies. This stands in stark contrast to fields like machine learning, where standardized benchmarks have catalyzed rapid
+              progress. Stochastic OR needs an analogous benchmarking culture that can discipline empirical claims, reveal the practical
+              relevance of algorithmic ideas, and accelerate innovation.
+            </p>
+            <p class="setup-lead">
+              This paper argues for one and shows what it would surface across two canonical queueing models and five case studies. The
+              first two studies probe the <strong>brittleness of analytical baselines</strong> once classical assumptions are perturbed;
+              the next three turn to learning-based methods and probe the <strong>sample complexity</strong> of competing algorithms, the
+              <strong>hyperparameter sensitivity</strong> of any one of them across an instance family, and the unexpected effects of
+              imposing <strong>structural restrictions</strong> on the policy class.
+            </p>
+          </div>
+
+          <aside class="setup-aside">
+            <div class="setup-q setup-q-hero">
+              <div class="setup-q-label">The thesis</div>
+              <p>Methods, analytical or learned, should be evaluated on what they produce across structurally diverse instances, not on a single anecdote. A shared benchmark surfaces brittleness, sample-complexity trade-offs, tuning sensitivity, and effects of imposed structure that single-instance experiments routinely miss.</p>
+            </div>
+            <div class="hero-actions hero-actions-stack">
+              <a href="https://arxiv.org/" class="hero-btn hero-btn-primary" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                <span>Read the paper</span>
+              </a>
+              <a href="https://github.com/" class="hero-btn" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+                <span>View the code</span>
+              </a>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <!-- Five case studies, organised into two themes -->
+      <div class="card">
+        <div class="card-head">
+          <h3>Five case studies, two themes</h3>
+          <p class="card-sub">
+            The first two studies highlight the <strong>brittleness of widely used researcher-driven policies</strong>: policies validated under clean theoretical
+            assumptions that prove sensitive to modest deviations. The remaining three turn to <strong>learning-based methods</strong>, each illustrating a distinct way
+            a benchmark contributes to their development.
+          </p>
+        </div>
+
+        <div class="part-block">
+          <div class="part-head">
+            <span class="part-num">I</span>
+            <div>
+              <div class="part-title">Brittleness of researcher-driven policies</div>
+              <div class="part-sub">Analytical baselines collapse once classical assumptions are perturbed.</div>
+            </div>
+          </div>
+          <div class="grid two exp-grid">
+
+            <a class="exp-card exp-card-large" data-jump="exp-two-class">
+              <div class="exp-thumb exp-thumb-cs1 exp-thumb-tall">
+                <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                  <defs>
+                    <marker id="ovArrCs1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+                  </defs>
+                  <g stroke="currentColor" fill="none" marker-end="url(#ovArrCs1)">
+                    <line x1="10" y1="55" x2="80" y2="55"/>
+                    <line x1="10" y1="125" x2="80" y2="125"/>
+                  </g>
+                  <rect x="80" y="38" width="80" height="34" rx="4" class="schema-q"/>
+                  <rect x="80" y="108" width="80" height="34" rx="4" class="schema-q"/>
+                  <text x="120" y="59" text-anchor="middle" class="schema-t">Queue 1</text>
+                  <text x="120" y="129" text-anchor="middle" class="schema-t">Queue 2</text>
+                  <g stroke="currentColor" fill="none" marker-end="url(#ovArrCs1)">
+                    <line x1="160" y1="55" x2="230" y2="80"/>
+                    <line x1="160" y1="125" x2="230" y2="100"/>
+                  </g>
+                  <circle cx="250" cy="90" r="22" class="schema-s"/>
+                  <text x="250" y="94" text-anchor="middle" class="schema-t">Server</text>
+                  <line x1="272" y1="90" x2="310" y2="90" stroke="currentColor" marker-end="url(#ovArrCs1)"/>
+                  <text x="45" y="48" text-anchor="middle" class="schema-l">&lambda;<tspan baseline-shift="sub" font-size="9">1</tspan></text>
+                  <text x="45" y="118" text-anchor="middle" class="schema-l">&lambda;<tspan baseline-shift="sub" font-size="9">2</tspan></text>
+                  <text x="195" y="65" text-anchor="middle" class="schema-l">&mu;<tspan baseline-shift="sub" font-size="9">1</tspan></text>
+                  <text x="195" y="125" text-anchor="middle" class="schema-l">&mu;<tspan baseline-shift="sub" font-size="9">2</tspan></text>
+                </svg>
+              </div>
+              <h4>Two-class single-server queue</h4>
+              <p>One server, two Poisson streams. Decide which class to serve at each completion; the classical optimum is the c&mu;-rule.
+                We then perturb service rates with <strong>state-dependent slowdown</strong>, an effect invisible to c&mu;, and ask whether the baseline still holds.</p>
+            </a>
+
+            <a class="exp-card exp-card-large" data-jump="exp-n-model">
+              <div class="exp-thumb exp-thumb-cs2 exp-thumb-tall">
+                <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                  <defs>
+                    <marker id="ovArrCs2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker>
+                  </defs>
+                  <g stroke="currentColor" fill="none" marker-end="url(#ovArrCs2)">
+                    <line x1="10" y1="50" x2="80" y2="50"/>
+                    <line x1="10" y1="130" x2="80" y2="130"/>
+                  </g>
+                  <rect x="80" y="33" width="70" height="34" rx="4" class="schema-q"/>
+                  <rect x="80" y="113" width="70" height="34" rx="4" class="schema-q"/>
+                  <text x="115" y="55" text-anchor="middle" class="schema-t">Queue 1</text>
+                  <text x="115" y="135" text-anchor="middle" class="schema-t">Queue 2</text>
+                  <g stroke="currentColor" fill="none" marker-end="url(#ovArrCs2)">
+                    <line x1="150" y1="50" x2="213" y2="50"/>
+                    <line x1="150" y1="130" x2="213" y2="130"/>
+                    <line x1="150" y1="60" x2="213" y2="120" stroke-dasharray="4 3"/>
+                  </g>
+                  <circle cx="235" cy="50" r="22" class="schema-s"/>
+                  <circle cx="235" cy="130" r="22" class="schema-s"/>
+                  <text x="235" y="54" text-anchor="middle" class="schema-t" font-size="13">S<tspan baseline-shift="sub" font-size="9">1</tspan></text>
+                  <text x="235" y="134" text-anchor="middle" class="schema-t" font-size="13">S<tspan baseline-shift="sub" font-size="9">2</tspan></text>
+                  <line x1="257" y1="50" x2="305" y2="50" stroke="currentColor" marker-end="url(#ovArrCs2)"/>
+                  <line x1="257" y1="130" x2="305" y2="130" stroke="currentColor" marker-end="url(#ovArrCs2)"/>
+                  <text x="45" y="42" text-anchor="middle" class="schema-l">&lambda;<tspan baseline-shift="sub" font-size="9">1</tspan></text>
+                  <text x="45" y="122" text-anchor="middle" class="schema-l">&lambda;<tspan baseline-shift="sub" font-size="9">2</tspan></text>
+                </svg>
+              </div>
+              <h4>N-Model</h4>
+              <p>Two queues, two servers in an "N" topology with one dedicated + one flexible server and asymmetric holding costs;
+                the heavy-traffic optimum is a static threshold (Harrison 1998). We then drop the flexible server's rate to 40% during a
+                window of the horizon and ask whether the static rule still survives the <strong>non-stationarity</strong>.</p>
+            </a>
+
+          </div>
+        </div>
+
+        <div class="part-block">
+          <div class="part-head">
+            <span class="part-num">II</span>
+            <div>
+              <div class="part-title">Learning-based methods</div>
+              <div class="part-sub">Each study shows a distinct way a benchmark contributes to methodological progress.</div>
+            </div>
+          </div>
+          <div class="grid three exp-grid">
+
+          <a class="exp-card" data-jump="exp-algorithms">
+            <div class="exp-thumb exp-thumb-algo">
+              <svg viewBox="0 0 160 80" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <!-- axes -->
+                <line x1="12" y1="68" x2="152" y2="68" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+                <line x1="12" y1="10" x2="12" y2="68" stroke="currentColor" stroke-width="1" opacity="0.35"/>
+                <!-- DP optimum dashed -->
+                <line x1="12" y1="22" x2="152" y2="22" stroke="currentColor" stroke-width="1" stroke-dasharray="3 3" opacity="0.45"/>
+                <text x="148" y="18" font-size="6.5" text-anchor="end" fill="currentColor" opacity="0.55">DP opt.</text>
+                <!-- Pathwise (red) — fastest -->
+                <path d="M 14 62 Q 28 50, 44 32 T 80 24 Q 110 23, 152 22" fill="none" stroke="#8a2030" stroke-width="2.2" stroke-linecap="round"/>
+                <!-- PPO (blue) — moderate -->
+                <path d="M 14 63 Q 38 60, 60 50 T 100 34 Q 130 28, 152 26" fill="none" stroke="#2a5fb3" stroke-width="2.2" stroke-linecap="round"/>
+                <!-- REINFORCE (green) — slowest -->
+                <path d="M 14 65 Q 50 63, 78 56 T 120 44 Q 140 38, 152 34" fill="none" stroke="#1f8a4d" stroke-width="2.2" stroke-linecap="round"/>
+                <!-- legend dots -->
+                <circle cx="16" cy="74" r="2" fill="#8a2030"/>
+                <circle cx="60" cy="74" r="2" fill="#2a5fb3"/>
+                <circle cx="108" cy="74" r="2" fill="#1f8a4d"/>
+                <text x="20" y="76" font-size="6.5" fill="currentColor" opacity="0.7">pathwise</text>
+                <text x="64" y="76" font-size="6.5" fill="currentColor" opacity="0.7">PPO</text>
+                <text x="112" y="76" font-size="6.5" fill="currentColor" opacity="0.7">REINFORCE</text>
+              </svg>
+            </div>
+            <h4>Algorithm families</h4>
+            <p>Compare four learning-based methods (PPO, a pathwise gradient estimator, two REINFORCE variants) on a shared environment, with hyperparameters tuned per method. How does sample complexity depend on the information interface to the simulator?</p>
+          </a>
+
+          <a class="exp-card" data-jump="exp-hyperparams">
+            <div class="exp-thumb exp-thumb-hp">
+              <svg viewBox="0 0 160 80" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <!-- 4x5 heatmap thumbnail -->
+                <g>
+                  <rect x="10"  y="10" width="26" height="14" fill="#3d9966"/>
+                  <rect x="38"  y="10" width="26" height="14" fill="#bfcf94"/>
+                  <rect x="66"  y="10" width="26" height="14" fill="#c69036"/>
+                  <rect x="94"  y="10" width="26" height="14" fill="#a4422f"/>
+                  <rect x="122" y="10" width="26" height="14" fill="#76281f"/>
+                  <rect x="10"  y="26" width="26" height="14" fill="#bfcf94"/>
+                  <rect x="38"  y="26" width="26" height="14" fill="#3d9966"/>
+                  <rect x="66"  y="26" width="26" height="14" fill="#8aa247"/>
+                  <rect x="94"  y="26" width="26" height="14" fill="#c69036"/>
+                  <rect x="122" y="26" width="26" height="14" fill="#a4422f"/>
+                  <rect x="10"  y="42" width="26" height="14" fill="#c69036"/>
+                  <rect x="38"  y="42" width="26" height="14" fill="#bfcf94"/>
+                  <rect x="66"  y="42" width="26" height="14" fill="#3d9966"/>
+                  <rect x="94"  y="42" width="26" height="14" fill="#bfcf94"/>
+                  <rect x="122" y="42" width="26" height="14" fill="#8aa247"/>
+                  <rect x="10"  y="58" width="26" height="14" fill="#a4422f"/>
+                  <rect x="38"  y="58" width="26" height="14" fill="#c69036"/>
+                  <rect x="66"  y="58" width="26" height="14" fill="#bfcf94"/>
+                  <rect x="94"  y="58" width="26" height="14" fill="#3d9966"/>
+                  <rect x="122" y="58" width="26" height="14" fill="#bfcf94"/>
+                </g>
+              </svg>
+            </div>
+            <h4>Hyperparameter sensitivity</h4>
+            <p>Sweep PPO configurations on one slowdown instance, then across five. Are hyperparameter rankings stable across instances, and which choices drive performance versus merely stabilise training?</p>
+          </a>
+
+          <a class="exp-card" data-jump="exp-masking">
+            <div class="exp-thumb exp-thumb-mask">
+              <svg viewBox="0 0 160 80" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+                <!-- Outer dashed rectangle: full policy class -->
+                <rect x="10" y="14" width="140" height="52" rx="6" fill="none"
+                      stroke="currentColor" stroke-width="1.4" stroke-dasharray="4 3" opacity="0.5"/>
+                <text x="16" y="24" font-size="7" fill="currentColor" opacity="0.65" font-style="italic">all policies</text>
+                <!-- Inner solid rounded rect: work-conserving subset -->
+                <rect x="32" y="34" width="96" height="24" rx="5"
+                      fill="rgba(138, 32, 48, 0.10)" stroke="#8a2030" stroke-width="1.7"/>
+                <text x="80" y="50" text-anchor="middle" font-size="9" font-weight="600"
+                      fill="#8a2030" font-family="Georgia, serif" font-style="italic">work-conserving</text>
+                <!-- Tiny corner X marking a restricted action -->
+                <g stroke="#8a2030" stroke-width="1.2" stroke-linecap="round" opacity="0.7">
+                  <line x1="138" y1="18" x2="144" y2="24"/>
+                  <line x1="144" y1="18" x2="138" y2="24"/>
+                </g>
+              </svg>
+            </div>
+            <h4>Restricting the policy class</h4>
+            <p>Compare PPO with and without a work-conservation action mask, on both canonical models. Does encoding the constraint into the policy class actually accelerate learning, or does it distort the gradient signal?</p>
+          </a>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Cite this work -->
+      <div class="card bibtex-card">
+        <div class="card-head">
+          <h3>Cite this work</h3>
+          <p class="card-sub">If this work helped your research, please cite the paper.</p>
+        </div>
+        <div class="bibtex-block">
+          <button type="button" class="bibtex-copy" data-bibtex-copy aria-label="Copy BibTeX to clipboard">
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+            <span class="bibtex-copy-label">Copy</span>
+          </button>
+<pre class="bibtex-pre"><code id="bibtex-text">@article{dong2026empirical,
+  title   = {Empirical Rigor Through Benchmarking in Operations Research},
+  author  = {Dong, Jing and Mittal, Daksh and Namkoong, Hongseok},
+  journal = {Operations Research (under review)},
+  year    = {2026},
+  url     = {https://arxiv.org/abs/XXXX.XXXXX},
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== TWO-CLASS (with merged cross-instance robustness) ===== -->
+    <section id="exp-two-class" class="panel">
+      <div class="panel-header">
+        <div>
+          <h1>Two-class single-server queue</h1>
+        </div>
+      </div>
+
+      <!-- Setup: explanation + the two network diagrams -->
+      <div class="card setup-card">
+        <div class="setup-grid">
+          <div class="setup-text">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>Setting</div>
+            <h2 class="setup-title">A scheduling problem with hidden state-dependence</h2>
+            <p>
+              A single server faces two streams of arriving customers and must repeatedly decide which class to serve.
+              Class-<em>i</em> customers (<em>i</em>&nbsp;&isin;&nbsp;{1,&nbsp;2}) arrive as independent Poisson processes with rates &lambda;<sub><em>i</em></sub>
+              and require exponential service at class-dependent rates &mu;<sub><em>i</em></sub>. Performance is the time-averaged
+              holding cost h<sub>1</sub>q<sub>1</sub>(t)+h<sub>2</sub>q<sub>2</sub>(t).
+            </p>
+            <p>
+              Under <strong>classical assumptions</strong> the optimal policy is the c&mu;-rule. We then perturb the setting with
+              <strong>state-dependent slowdown</strong>: when q<sub>i</sub> reaches a threshold k<sub>i</sub>, &mu;<sub>i</sub> drops to
+              0.1&middot;&mu;<sub>i</sub>. The slowdown is invisible to the c&mu;-rule, which acts only on instantaneous service rates and holding costs.
+            </p>
+            <div class="setup-q">
+              <div class="setup-q-label">The question</div>
+              <p>Does the analytical baseline still hold once service rates depend on the state of the queues?</p>
+            </div>
+            <button type="button" class="info-link info-link-inline" data-open-setup="setup-two-class">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="8.01"/><polyline points="11 12 12 12 12 16 13 16"/>
+              </svg>
+              <span>Full parameters &amp; protocol</span>
+            </button>
+          </div>
+
+          <div class="setup-diagrams">
+            <figure class="diagram-card">
+              <div class="diagram-head">
+                <span class="diagram-num">1</span>
+                <div class="diagram-titles">
+                  <div class="diagram-title">Classical</div>
+                  <div class="diagram-sub">Fixed service rates &mu;<sub>i</sub></div>
+                </div>
+              </div>
+              <div class="diagram-body">
+                <svg viewBox="0 0 480 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Classical two-class single-server schematic">
+                  <defs>
+                    <marker id="arrCs1A" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+                    </marker>
+                  </defs>
+                  <g stroke="currentColor" fill="none" marker-end="url(#arrCs1A)">
+                    <line x1="20" y1="60" x2="110" y2="60"/>
+                    <line x1="20" y1="140" x2="110" y2="140"/>
+                  </g>
+                  <rect x="110" y="40" width="110" height="40" rx="5" class="schema-q"/>
+                  <rect x="110" y="120" width="110" height="40" rx="5" class="schema-q"/>
+                  <text x="165" y="64" text-anchor="middle" class="schema-t">Queue 1</text>
+                  <text x="165" y="144" text-anchor="middle" class="schema-t">Queue 2</text>
+                  <g stroke="currentColor" fill="none" marker-end="url(#arrCs1A)">
+                    <line x1="220" y1="60" x2="330" y2="90"/>
+                    <line x1="220" y1="140" x2="330" y2="110"/>
+                  </g>
+                  <circle cx="360" cy="100" r="30" class="schema-s"/>
+                  <text x="360" y="104" text-anchor="middle" class="schema-t">Server</text>
+                  <line x1="390" y1="100" x2="455" y2="100" stroke="currentColor" marker-end="url(#arrCs1A)"/>
+                  <text x="65" y="52" text-anchor="middle" class="schema-l">&lambda;<tspan baseline-shift="sub" font-size="10">1</tspan></text>
+                  <text x="65" y="132" text-anchor="middle" class="schema-l">&lambda;<tspan baseline-shift="sub" font-size="10">2</tspan></text>
+                  <text x="275" y="68" text-anchor="middle" class="schema-l">&mu;<tspan baseline-shift="sub" font-size="10">1</tspan></text>
+                  <text x="275" y="138" text-anchor="middle" class="schema-l">&mu;<tspan baseline-shift="sub" font-size="10">2</tspan></text>
+                </svg>
+              </div>
+            </figure>
+
+            <!-- Decorative downward connector -->
+            <div class="diagram-arrow" aria-hidden="true">
+              <span class="diagram-arrow-line"></span>
+              <span class="diagram-arrow-text">add state-dependent slowdown</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg>
+            </div>
+
+            <figure class="diagram-card diagram-card-alt">
+              <div class="diagram-head">
+                <span class="diagram-num">2</span>
+                <div class="diagram-titles">
+                  <div class="diagram-title">State-dependent slowdown</div>
+                  <div class="diagram-sub">&mu;<sub>i</sub> &rarr; &beta;<sub>i</sub>&middot;&mu;<sub>i</sub> when q<sub>i</sub> &ge; k<sub>i</sub></div>
+                </div>
+              </div>
+              <div class="diagram-body">
+                <svg viewBox="0 0 520 200" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Two-class with state-dependent slowdown schematic">
+                  <defs>
+                    <marker id="arrCs1B" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+                    </marker>
+                  </defs>
+                  <g stroke="currentColor" fill="none" marker-end="url(#arrCs1B)">
+                    <line x1="20" y1="60" x2="110" y2="60"/>
+                    <line x1="20" y1="140" x2="110" y2="140"/>
+                  </g>
+                  <rect x="110" y="40" width="110" height="40" rx="5" class="schema-q"/>
+                  <rect x="110" y="120" width="110" height="40" rx="5" class="schema-q"/>
+                  <text x="165" y="64" text-anchor="middle" class="schema-t">Queue 1</text>
+                  <text x="165" y="144" text-anchor="middle" class="schema-t">Queue 2</text>
+                  <g stroke="currentColor" fill="none" marker-end="url(#arrCs1B)">
+                    <line x1="220" y1="60" x2="360" y2="90"/>
+                    <line x1="220" y1="140" x2="360" y2="110"/>
+                  </g>
+                  <circle cx="395" cy="100" r="30" class="schema-s"/>
+                  <text x="395" y="104" text-anchor="middle" class="schema-t">Server</text>
+                  <line x1="425" y1="100" x2="495" y2="100" stroke="currentColor" marker-end="url(#arrCs1B)"/>
+                  <text x="65" y="52" text-anchor="middle" class="schema-l">&lambda;<tspan baseline-shift="sub" font-size="10">1</tspan></text>
+                  <text x="65" y="132" text-anchor="middle" class="schema-l">&lambda;<tspan baseline-shift="sub" font-size="10">2</tspan></text>
+                  <text x="290" y="46" text-anchor="middle" class="schema-l-sm">q<tspan baseline-shift="sub" font-size="9">1</tspan> &lt; k<tspan baseline-shift="sub" font-size="9">1</tspan> &rArr; &mu;<tspan baseline-shift="sub" font-size="9">1</tspan></text>
+                  <text x="290" y="62" text-anchor="middle" class="schema-l-sm slow">q<tspan baseline-shift="sub" font-size="9">1</tspan> &ge; k<tspan baseline-shift="sub" font-size="9">1</tspan> &rArr; &beta;<tspan baseline-shift="sub" font-size="9">1</tspan>&mu;<tspan baseline-shift="sub" font-size="9">1</tspan></text>
+                  <text x="290" y="146" text-anchor="middle" class="schema-l-sm">q<tspan baseline-shift="sub" font-size="9">2</tspan> &lt; k<tspan baseline-shift="sub" font-size="9">2</tspan> &rArr; &mu;<tspan baseline-shift="sub" font-size="9">2</tspan></text>
+                  <text x="290" y="162" text-anchor="middle" class="schema-l-sm slow">q<tspan baseline-shift="sub" font-size="9">2</tspan> &ge; k<tspan baseline-shift="sub" font-size="9">2</tspan> &rArr; &beta;<tspan baseline-shift="sub" font-size="9">2</tspan>&mu;<tspan baseline-shift="sub" font-size="9">2</tspan></text>
+                </svg>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regime toggle -->
+      <div class="card">
+        <div class="card-head">
+          <h3>Pick a regime: results</h3>
+          <div class="seg seg-lg" role="tablist" aria-label="Regime">
+            <button class="seg-btn active" data-regime="classical">Classical</button>
+            <button class="seg-btn" data-regime="asymmetric">Asymmetric slowdown (k₁=8, k₂=25)</button>
+            <button class="seg-btn" data-regime="symmetric">Symmetric slowdown (k₁=k₂=10)</button>
+          </div>
+        </div>
+
+        <!-- Classical -->
+        <div class="regime-panel" data-regime="classical" hidden>
+          <div class="regime-grid">
+            <div class="regime-text">
+              <div class="eyebrow eyebrow-good"><span class="eyebrow-dot"></span>Regime 1 &middot; Classical assumptions hold</div>
+              <h2 class="regime-title">A sanity check the algorithm passes</h2>
+              <p class="regime-prose">
+                Fixed service rates, linear holding costs, work-conserving server. The c&mu;-rule is provably optimal. A learning algorithm trained from
+                black-box interaction alone should recover that prescription, and it does, to within statistical noise.
+              </p>
+              <table class="data-table sortable" data-sort-default="0">
+                <caption>Cost rate, 95% half-widths over 500 trajectories</caption>
+                <thead><tr><th data-sort="text">Policy</th><th data-sort="num">Cost rate</th><th>Notes</th></tr></thead>
+                <tbody>
+                  <tr><td>c&mu;-rule baseline</td><td data-val="2.007">2.007 ± 0.066</td><td>analytical optimum</td></tr>
+                  <tr><td>Random baseline</td><td data-val="2.036">2.036 ± 0.067</td><td>work-conserving</td></tr>
+                  <tr class="row-highlight"><td>PPO</td><td data-val="2.007">2.007 ± 0.066</td><td>recovers c&mu;-rule</td></tr>
+                </tbody>
+              </table>
+              <div class="regime-result regime-result-good">
+                <div class="regime-result-label">The result</div>
+                <p>PPO matches the c<em>μ</em>-rule to within statistical noise; useful before perturbing the setting.</p>
+              </div>
+            </div>
+            <div class="regime-side">
+              <figure class="diagram-card zoom-fig pol-card pol-card-good">
+                <div class="diagram-head">
+                  <span class="diagram-pill diagram-pill-good">PPO</span>
+                  <div class="diagram-titles">
+                    <div class="diagram-title">Learned policy</div>
+                    <div class="diagram-sub">P(serve queue 1) over the state space</div>
+                  </div>
+                </div>
+                <div class="diagram-body diagram-body-img">
+                  <img src="assets/figures/cs1_no_slow_policy.png" alt="Learned PPO policy in the classical regime" loading="lazy" />
+                </div>
+                <figcaption class="diagram-cap">The learned policy almost always serves class&nbsp;2 (since h<sub>2</sub>&middot;&mu;<sub>2</sub>&nbsp;&gt;&nbsp;h<sub>1</sub>&middot;&mu;<sub>1</sub>), reproducing the c&mu;-rule from interaction alone.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <!-- Asymmetric slowdown -->
+        <div class="regime-panel" data-regime="asymmetric" hidden>
+          <div class="regime-grid">
+            <div class="regime-text">
+              <div class="eyebrow"><span class="eyebrow-dot"></span>Regime 2 &middot; Asymmetric slowdown &nbsp;<span class="eyebrow-param">k<sub>1</sub>=8, k<sub>2</sub>=25</span></div>
+              <h2 class="regime-title">When the baseline favours the wrong class</h2>
+              <p class="regime-prose">
+                Queue 1's threshold k<sub>1</sub>=8 is tight; queue 2's k<sub>2</sub>=25 is rarely binding. Protecting class 1 against the
+                10&times; rate drop becomes essential, the <em>opposite</em> of what the c&mu;-rule prescribes.
+              </p>
+              <table class="data-table sortable">
+                <thead><tr><th data-sort="text">Policy</th><th data-sort="num">Cost rate</th><th>vs PPO</th></tr></thead>
+                <tbody>
+                  <tr><td>c&mu;-rule baseline</td><td data-val="66.540">66.540 ± 2.590</td><td><span class="pill pill-bad">9.2&times;</span></td></tr>
+                  <tr><td>Random baseline</td><td data-val="70.210">70.210 ± 5.190</td><td><span class="pill pill-bad">9.7&times;</span></td></tr>
+                  <tr class="row-highlight"><td>PPO</td><td data-val="7.252">7.252 ± 1.504</td><td><span class="pill pill-good">1.0&times;</span></td></tr>
+                </tbody>
+              </table>
+              <div class="regime-result">
+                <div class="regime-result-label">The result</div>
+                <p>PPO cuts cost by <strong>≈89%</strong>. The c<em>μ</em>-rule is more than <strong>9&times;</strong> worse than its own performance in the unperturbed setting.</p>
+              </div>
+            </div>
+            <div class="regime-side">
+              <figure class="diagram-card zoom-fig pol-card">
+                <div class="diagram-head">
+                  <span class="diagram-pill">PPO</span>
+                  <div class="diagram-titles">
+                    <div class="diagram-title">Learned policy</div>
+                    <div class="diagram-sub">P(serve queue 1) over the state space</div>
+                  </div>
+                </div>
+                <div class="diagram-body diagram-body-img">
+                  <img src="assets/figures/cs1_k8_k25_policy.png" alt="Learned PPO policy in the asymmetric regime" loading="lazy" />
+                </div>
+                <figcaption class="diagram-cap">Class-1 service concentrates in a tight band of small-to-moderate q<sub>1</sub>, abandoning c&mu; whenever queue 1 approaches its slowdown threshold.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <!-- Symmetric tight slowdown -->
+        <div class="regime-panel" data-regime="symmetric" hidden>
+          <div class="regime-grid">
+            <div class="regime-text">
+              <div class="eyebrow"><span class="eyebrow-dot"></span>Regime 3 &middot; Symmetric tight slowdown &nbsp;<span class="eyebrow-param">k<sub>1</sub>=k<sub>2</sub>=10</span></div>
+              <h2 class="regime-title">When there is no class to favour</h2>
+              <p class="regime-prose">
+                Both thresholds are equally tight. The agent must <em>continuously</em> balance slowdown risk across both classes;
+                there is no longer a single "right" class to prioritise. The c&mu;-rule is now <em>worse than uniform random scheduling</em>.
+              </p>
+              <table class="data-table sortable">
+                <thead><tr><th data-sort="text">Policy</th><th data-sort="num">Cost rate</th><th>vs PPO</th></tr></thead>
+                <tbody>
+                  <tr><td>c&mu;-rule baseline</td><td data-val="95.600">95.600 ± 6.780</td><td><span class="pill pill-bad">3.1&times;</span></td></tr>
+                  <tr><td>Random baseline</td><td data-val="69.400">69.400 ± 7.040</td><td><span class="pill pill-warn">2.3&times;</span></td></tr>
+                  <tr class="row-highlight"><td>PPO</td><td data-val="30.727">30.727 ± 5.576</td><td><span class="pill pill-good">1.0&times;</span></td></tr>
+                </tbody>
+              </table>
+              <div class="regime-result">
+                <div class="regime-result-label">The result</div>
+                <p>PPO cuts cost by <strong>≈68%</strong>, and uniform random scheduling beats the c<em>μ</em>-rule.</p>
+              </div>
+            </div>
+            <div class="regime-side">
+              <figure class="diagram-card zoom-fig pol-card pol-card-alt">
+                <div class="diagram-head">
+                  <span class="diagram-pill">PPO</span>
+                  <div class="diagram-titles">
+                    <div class="diagram-title">Learned policy</div>
+                    <div class="diagram-sub">P(serve queue 1) over the state space</div>
+                  </div>
+                </div>
+                <div class="diagram-body diagram-body-img">
+                  <img src="assets/figures/cs1_k10_k10_policy.png" alt="Learned PPO policy in the symmetric tight regime" loading="lazy" />
+                </div>
+                <figcaption class="diagram-cap">The boundary now runs diagonally across the state space; the agent must protect both queues simultaneously.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cross-instance robustness (merged in) -->
+      <div class="card" id="cross-instance-card">
+        <div class="card-head">
+          <h3>Cross-instance robustness</h3>
+          <p class="card-sub">
+            Train PPO on each of five slowdown configurations, evaluate every trained policy on every configuration. Hover or tap a cell. Values are PPO cost divided by the cost PPO achieved when trained <em>and</em> evaluated on that instance.
+            <span class="legend-strip">
+              <span class="legend-box" style="background:#3d9966"></span>1.0&times;
+              <span class="legend-box" style="background:#8aa247"></span>2&times;
+              <span class="legend-box" style="background:#c69036"></span>3&times;
+              <span class="legend-box" style="background:#c46c3a"></span>5&times;
+              <span class="legend-box" style="background:#76281f"></span>≥10&times;
+            </span>
+          </p>
+        </div>
+
+        <div class="cim-wrap">
+          <div class="cim-grid" id="crossInstance" aria-label="Cross-instance evaluation matrix">
+            <div class="cim-cell cim-corner"></div>
+            <div class="cim-cell cim-colhead">k₁=8<br/>k₂=25</div>
+            <div class="cim-cell cim-colhead">k₁=8<br/>k₂=200</div>
+            <div class="cim-cell cim-colhead">k₁=k₂<br/>=10</div>
+            <div class="cim-cell cim-colhead">k₁=k₂<br/>=20</div>
+            <div class="cim-cell cim-colhead">No<br/>slowdown</div>
+          </div>
+          <div class="cim-detail" id="cimDetail">
+            <div class="cim-detail-h">Select a cell</div>
+            <div class="cim-detail-body">Hover a cell on the matrix to see the train/evaluation pair and the relative cost.</div>
+          </div>
+        </div>
+
+        <div class="callout">
+          <div class="callout-h">Two complementary modes of evaluation</div>
+          <p>You can ask <em>"can the algorithm produce a competent policy for a given instance?"</em>, or you can ask
+            <em>"is the produced policy robust across a specified set of environments?"</em> A benchmark that spans an instance family supports both
+            modes and makes the choice explicit.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SETUP MODAL: TWO-CLASS ===== -->
+    <div class="setup-modal" id="setup-two-class" hidden>
+      <div class="setup-modal-card" role="dialog" aria-modal="true" aria-labelledby="setup-two-class-h">
+        <button class="setup-close" data-close-setup aria-label="Close setup">×</button>
+        <h3 id="setup-two-class-h">Setup: two-class single-server queue</h3>
+        <p>A single server faces two streams of arriving customers and must repeatedly decide which class to serve.
+          Class-<em>i</em> customers (<em>i</em>&nbsp;&isin;&nbsp;{1,2}) arrive according to independent Poisson processes with rates &lambda;<sub><em>i</em></sub>
+          and require exponentially distributed service with class-dependent rates &mu;<sub><em>i</em></sub>.
+          At each decision epoch (a service completion or the server becoming idle), the agent selects which class to serve.</p>
+        <p>Performance is the time-averaged holding cost
+          <code>(1/T) &int;<sub>0</sub><sup>T</sup> (h<sub>1</sub>&middot;q<sub>1</sub>(t) + h<sub>2</sub>&middot;q<sub>2</sub>(t)) dt</code>,
+          where q<sub><em>i</em></sub>(t) is the number of class-<em>i</em> customers in the system at time <em>t</em>.</p>
+
+        <h4>Parameters</h4>
+        <div class="param-grid">
+          <div class="param"><div class="param-k">&lambda;<sub>1</sub>, &lambda;<sub>2</sub></div><div class="param-v">0.75, 0.75</div></div>
+          <div class="param"><div class="param-k">&mu;<sub>1</sub>, &mu;<sub>2</sub></div><div class="param-v">2.0, 2.1</div></div>
+          <div class="param"><div class="param-k">h<sub>1</sub>, h<sub>2</sub></div><div class="param-v">1.0, 1.0</div></div>
+          <div class="param"><div class="param-k">Horizon T</div><div class="param-v">600</div></div>
+        </div>
+
+        <h4>State-dependent slowdown (added perturbation)</h4>
+        <p>Whenever the number of class-<em>i</em> customers reaches a threshold k<sub><em>i</em></sub>, the service rate for that class degrades from &mu;<sub><em>i</em></sub> to &beta;<sub><em>i</em></sub>&middot;&mu;<sub><em>i</em></sub> with &beta;<sub><em>i</em></sub>&nbsp;=&nbsp;0.1. Each queue has a buffer capacity q<sub>max</sub>&nbsp;=&nbsp;150. The mechanism is invisible to the c&mu;-rule, which acts only on instantaneous service rates and holding costs.</p>
+
+        <h4>Baselines</h4>
+        <ul class="bullet">
+          <li><strong>c&mu;-rule:</strong> serve the class with the largest h<sub><em>i</em></sub>&middot;&mu;<sub><em>i</em></sub>. Analytically optimal under classical assumptions.</li>
+          <li><strong>Random:</strong> uniform work-conserving.</li>
+          <li><strong>PPO:</strong> Proximal Policy Optimization (Dai &amp; Gluzman 2022) interacting with the simulator without privileged knowledge of the analytical structure.</li>
+        </ul>
+
+        <h4>Evaluation</h4>
+        <p>All simulation-based estimates are reported with 95% half-widths over 500 independent evaluation trajectories.</p>
+      </div>
+    </div>
+
+    <!-- ===== N-MODEL ===== -->
+    <section id="exp-n-model" class="panel">
+      <div class="panel-header">
+        <div>
+          <h1>N-Model</h1>
+        </div>
+      </div>
+
+      <!-- Setup: explanation + two diagrams -->
+      <div class="card setup-card">
+        <div class="setup-grid">
+          <div class="setup-text">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>Setting</div>
+            <h2 class="setup-title">A routing problem under non-stationarity</h2>
+            <p>
+              Two queues are served by two servers in an "N" topology. Server&nbsp;1 is <strong>dedicated</strong> to queue&nbsp;1 at rate
+              &mu;<sub>11</sub>. Server&nbsp;2 is <strong>flexible</strong> and the agent's control: it can serve queue&nbsp;1 at rate
+              &mu;<sub>21</sub> or queue&nbsp;2 at rate &mu;<sub>22</sub>. Arrivals follow independent Poisson processes with rates
+              &lambda;<sub>1</sub>, &lambda;<sub>2</sub>. Performance is the time-averaged holding cost
+              h<sub>1</sub>q<sub>1</sub>(t)+h<sub>2</sub>q<sub>2</sub>(t), with h<sub>1</sub>=10, h<sub>2</sub>=1.
+            </p>
+            <p>
+              Under <strong>classical stationary</strong> conditions a static threshold rule routing server&nbsp;2 to queue&nbsp;1 whenever
+              q<sub>1</sub>&nbsp;exceeds a fixed level is asymptotically optimal under heavy-traffic scaling. We then perturb the setting with
+              a <strong>service-rate surge</strong>: &mu;<sub>21</sub> drops to 40% of nominal during a window in the middle of the horizon.
+            </p>
+            <div class="setup-q">
+              <div class="setup-q-label">The question</div>
+              <p>Does a static threshold rule, calibrated for stationarity, still produce a competent policy when capacity drops mid-horizon?</p>
+            </div>
+            <button type="button" class="info-link info-link-inline" data-open-setup="setup-n-model">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="8.01"/><polyline points="11 12 12 12 12 16 13 16"/>
+              </svg>
+              <span>Full parameters &amp; protocol</span>
+            </button>
+          </div>
+
+          <div class="setup-diagrams">
+            <figure class="diagram-card">
+              <div class="diagram-head">
+                <span class="diagram-num">1</span>
+                <div class="diagram-titles">
+                  <div class="diagram-title">Classical stationary</div>
+                  <div class="diagram-sub">Fixed service rates &mu;<sub>11</sub>, &mu;<sub>21</sub>, &mu;<sub>22</sub></div>
+                </div>
+              </div>
+              <div class="diagram-body">
+                <svg viewBox="0 0 520 220" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Classical N-model schematic">
+                  <defs>
+                    <marker id="arrNmA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+                    </marker>
+                  </defs>
+                  <g stroke="currentColor" fill="none" marker-end="url(#arrNmA)">
+                    <line x1="20" y1="60" x2="110" y2="60"/>
+                    <line x1="20" y1="160" x2="110" y2="160"/>
+                  </g>
+                  <rect x="110" y="40" width="110" height="40" rx="5" class="schema-q"/>
+                  <rect x="110" y="140" width="110" height="40" rx="5" class="schema-q"/>
+                  <text x="165" y="64" text-anchor="middle" class="schema-t">Queue 1</text>
+                  <text x="165" y="164" text-anchor="middle" class="schema-t">Queue 2</text>
+
+                  <!-- Server 1 (dedicated) -->
+                  <circle cx="370" cy="60" r="26" class="schema-s"/>
+                  <text x="370" y="64" text-anchor="middle" class="schema-t" font-size="12">Server 1</text>
+                  <text x="370" y="105" text-anchor="middle" class="schema-cap" font-style="italic">dedicated</text>
+
+                  <!-- Server 2 (flexible) -->
+                  <circle cx="370" cy="160" r="26" class="schema-s"/>
+                  <text x="370" y="164" text-anchor="middle" class="schema-t" font-size="12">Server 2</text>
+                  <text x="370" y="205" text-anchor="middle" class="schema-cap" font-style="italic">flexible</text>
+
+                  <!-- Arrows: Q1 -> S1 (dedicated) -->
+                  <line x1="220" y1="60" x2="344" y2="60" stroke="currentColor" fill="none" marker-end="url(#arrNmA)"/>
+                  <!-- Q2 -> S2 (dedicated to flexible) -->
+                  <line x1="220" y1="160" x2="344" y2="160" stroke="currentColor" fill="none" marker-end="url(#arrNmA)"/>
+                  <!-- Q1 -> S2 (flexible routing - dashed) -->
+                  <line x1="220" y1="78" x2="344" y2="148" stroke="currentColor" fill="none" stroke-dasharray="5 4" marker-end="url(#arrNmA)"/>
+
+                  <!-- Outflow -->
+                  <line x1="396" y1="60" x2="475" y2="60" stroke="currentColor" marker-end="url(#arrNmA)"/>
+                  <line x1="396" y1="160" x2="475" y2="160" stroke="currentColor" marker-end="url(#arrNmA)"/>
+
+                  <text x="65" y="52" text-anchor="middle" class="schema-l">&lambda;<tspan baseline-shift="sub" font-size="10">1</tspan></text>
+                  <text x="65" y="152" text-anchor="middle" class="schema-l">&lambda;<tspan baseline-shift="sub" font-size="10">2</tspan></text>
+                  <text x="280" y="52" text-anchor="middle" class="schema-l">&mu;<tspan baseline-shift="sub" font-size="10">11</tspan></text>
+                  <text x="280" y="152" text-anchor="middle" class="schema-l">&mu;<tspan baseline-shift="sub" font-size="10">22</tspan></text>
+                  <text x="278" y="98" text-anchor="middle" class="schema-l">&mu;<tspan baseline-shift="sub" font-size="10">21</tspan></text>
+                </svg>
+              </div>
+            </figure>
+
+            <div class="diagram-arrow" aria-hidden="true">
+              <span class="diagram-arrow-line"></span>
+              <span class="diagram-arrow-text">drop &mu;<sub>21</sub> to 40% mid-horizon</span>
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="6 13 12 19 18 13"/></svg>
+            </div>
+
+            <figure class="diagram-card diagram-card-alt">
+              <div class="diagram-head">
+                <span class="diagram-num">2</span>
+                <div class="diagram-titles">
+                  <div class="diagram-title">Service-rate surge</div>
+                  <div class="diagram-sub">&mu;<sub>21</sub> &rarr; 0.4&middot;&mu;<sub>21</sub> for t &isin; [0.35T, 0.70T]</div>
+                </div>
+              </div>
+              <div class="diagram-body">
+                <svg viewBox="0 0 520 220" preserveAspectRatio="xMidYMid meet" role="img" aria-label="N-model with service-rate surge schematic">
+                  <defs>
+                    <marker id="arrNmB" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+                      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+                    </marker>
+                  </defs>
+                  <g stroke="currentColor" fill="none" marker-end="url(#arrNmB)">
+                    <line x1="20" y1="60" x2="110" y2="60"/>
+                    <line x1="20" y1="160" x2="110" y2="160"/>
+                  </g>
+                  <rect x="110" y="40" width="110" height="40" rx="5" class="schema-q"/>
+                  <rect x="110" y="140" width="110" height="40" rx="5" class="schema-q"/>
+                  <text x="165" y="64" text-anchor="middle" class="schema-t">Queue 1</text>
+                  <text x="165" y="164" text-anchor="middle" class="schema-t">Queue 2</text>
+
+                  <circle cx="370" cy="60" r="26" class="schema-s"/>
+                  <text x="370" y="64" text-anchor="middle" class="schema-t" font-size="12">Server 1</text>
+                  <text x="370" y="105" text-anchor="middle" class="schema-cap" font-style="italic">dedicated</text>
+
+                  <circle cx="370" cy="160" r="26" class="schema-s"/>
+                  <text x="370" y="164" text-anchor="middle" class="schema-t" font-size="12">Server 2</text>
+                  <text x="370" y="205" text-anchor="middle" class="schema-cap" font-style="italic">flexible</text>
+
+                  <line x1="220" y1="60" x2="344" y2="60" stroke="currentColor" fill="none" marker-end="url(#arrNmB)"/>
+                  <line x1="220" y1="160" x2="344" y2="160" stroke="currentColor" fill="none" marker-end="url(#arrNmB)"/>
+                  <!-- The flexible-routing arrow is the one that surges -->
+                  <line x1="220" y1="78" x2="344" y2="148" class="schema-arrow-slow" stroke-dasharray="5 4" marker-end="url(#arrNmB)"/>
+
+                  <line x1="396" y1="60" x2="475" y2="60" stroke="currentColor" marker-end="url(#arrNmB)"/>
+                  <line x1="396" y1="160" x2="475" y2="160" stroke="currentColor" marker-end="url(#arrNmB)"/>
+
+                  <text x="65" y="52" text-anchor="middle" class="schema-l">&lambda;<tspan baseline-shift="sub" font-size="10">1</tspan></text>
+                  <text x="65" y="152" text-anchor="middle" class="schema-l">&lambda;<tspan baseline-shift="sub" font-size="10">2</tspan></text>
+                  <text x="280" y="52" text-anchor="middle" class="schema-l">&mu;<tspan baseline-shift="sub" font-size="10">11</tspan></text>
+                  <text x="280" y="152" text-anchor="middle" class="schema-l">&mu;<tspan baseline-shift="sub" font-size="10">22</tspan></text>
+                  <text x="278" y="98" text-anchor="middle" class="schema-l-sm slow">&mu;<tspan baseline-shift="sub" font-size="9">21</tspan> &rarr; 0.4&middot;&mu;<tspan baseline-shift="sub" font-size="9">21</tspan></text>
+                </svg>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <!-- Regime toggle -->
+      <div class="card">
+        <div class="card-head">
+          <h3>Pick a regime: results</h3>
+          <div class="seg seg-lg" role="tablist" aria-label="Regime">
+            <button class="seg-btn active" data-nm-regime="stationary">Classical stationary</button>
+            <button class="seg-btn" data-nm-regime="surge">Service-rate surge</button>
+          </div>
+        </div>
+
+        <!-- Stationary -->
+        <div class="nm-panel" data-nm-regime="stationary" hidden>
+          <div class="regime-grid">
+            <div class="regime-text">
+              <div class="eyebrow eyebrow-good"><span class="eyebrow-dot"></span>Regime 1 &middot; Classical stationary</div>
+              <h2 class="regime-title">Recovering the DP optimum</h2>
+              <p class="regime-prose">
+                With state space bounded at q<sub>i</sub>&le;300 we compute the dynamic-programming optimum exactly,
+                giving a ground-truth lower bound. A learning algorithm should match this; the static heavy-traffic threshold,
+                while asymptotically optimal, leaves a small gap.
+              </p>
+              <table class="data-table sortable">
+                <thead><tr><th>Policy</th><th data-sort="num">Cost rate</th><th>Type</th></tr></thead>
+                <tbody>
+                  <tr><td>DP optimal</td><td data-val="30.785">30.785</td><td><span class="pill pill-info">exact</span></td></tr>
+                  <tr><td>Static threshold q<sub>1</sub>&gt;5</td><td data-val="32.632">32.632</td><td><span class="pill pill-info">exact</span></td></tr>
+                  <tr class="row-highlight"><td>PPO</td><td data-val="30.987">30.987 ± 0.303</td><td><span class="pill pill-good">learned</span></td></tr>
+                  <tr><td>Random</td><td data-val="79.610">79.610 ± 2.864</td><td><span class="pill pill-bad">work-cons.</span></td></tr>
+                </tbody>
+              </table>
+              <div class="regime-result regime-result-good">
+                <div class="regime-result-label">The result</div>
+                <p>PPO matches the DP optimum to within statistical noise; the learned policy tracks the optimal threshold structure with a slightly smoother boundary.</p>
+              </div>
+            </div>
+
+            <div class="regime-side">
+              <figure class="diagram-card zoom-fig pol-card">
+                <div class="diagram-head">
+                  <span class="diagram-pill" id="nmStaticPill">DP</span>
+                  <div class="diagram-titles">
+                    <div class="diagram-title">Learned policy</div>
+                    <div class="diagram-sub">P(route server&nbsp;2 to queue&nbsp;1)</div>
+                  </div>
+                  <div class="seg seg-mini diagram-head-seg" data-pol-toggle>
+                    <button class="seg-btn active" data-pol="dp">DP optimal</button>
+                    <button class="seg-btn" data-pol="ppo">PPO</button>
+                  </div>
+                </div>
+                <div class="diagram-body diagram-body-img">
+                  <img id="nmStaticImg" src="assets/figures/cs2_normal_dp.png" alt="DP optimal policy on the N-model (stationary)" />
+                </div>
+                <figcaption class="diagram-cap" id="nmStaticCap">Dynamic-programming optimal policy. Red = route server 2 to queue 1; blue = queue 2.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+
+        <!-- Surge -->
+        <div class="nm-panel" data-nm-regime="surge" hidden>
+          <div class="regime-grid">
+            <div class="regime-text">
+              <div class="eyebrow"><span class="eyebrow-dot"></span>Regime 2 &middot; Service-rate surge &nbsp;<span class="eyebrow-param">&mu;<sub>21</sub> &darr; 40% mid-horizon</span></div>
+              <h2 class="regime-title">When the threshold rule cannot adapt</h2>
+              <p class="regime-prose">
+                During t&nbsp;&isin;&nbsp;[0.35T, 0.70T], &mu;<sub>21</sub> drops to 40% of nominal. The static threshold rule conditions only
+                on instantaneous queue lengths, so it cannot react. PPO, with access to the time component of the state, pivots its routing
+                during the surge and recovers when capacity returns.
+              </p>
+              <table class="data-table sortable">
+                <thead><tr><th>Policy</th><th data-sort="num">Cost rate</th><th>vs PPO</th></tr></thead>
+                <tbody>
+                  <tr class="row-highlight"><td>PPO (final)</td><td data-val="39.259">39.259 ± 0.876</td><td><span class="pill pill-good">1.00&times;</span></td></tr>
+                  <tr><td>Static threshold q<sub>1</sub>&gt;5</td><td data-val="43.253">43.253 ± 1.214</td><td><span class="pill pill-warn">1.10&times;</span></td></tr>
+                  <tr><td>Random</td><td data-val="75.549">75.549 ± 2.125</td><td><span class="pill pill-bad">1.92&times;</span></td></tr>
+                </tbody>
+              </table>
+              <div class="regime-result">
+                <div class="regime-result-label">The result</div>
+                <p>PPO cuts cost by <strong>≈10%</strong> over the static threshold. More instructive than the gap: the <em>shape</em> of the PPO policy changes over time.</p>
+              </div>
+            </div>
+            <div class="regime-side">
+              <figure class="diagram-card zoom-fig pol-card pol-card-alt">
+                <div class="diagram-head">
+                  <span class="diagram-pill">PPO</span>
+                  <div class="diagram-titles">
+                    <div class="diagram-title">Learned policy through the surge</div>
+                    <div class="diagram-sub">P(route server&nbsp;2 to Q<sub>1</sub>) at three time-slices</div>
+                  </div>
+                </div>
+                <div class="diagram-body diagram-body-img">
+                  <img src="assets/figures/cs2_surge_ppo.png" alt="PPO policy through the service-rate surge" />
+                </div>
+                <figcaption class="diagram-cap">Before the surge (t/T=0.20) the agent tracks the stationary threshold. During (t/T=0.50) the policy pivots toward queue 2 over a wider region. Once &mu;<sub>21</sub> is restored (t/T=0.85) the structure returns.</figcaption>
+              </figure>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SETUP MODAL: N-MODEL ===== -->
+    <div class="setup-modal" id="setup-n-model" hidden>
+      <div class="setup-modal-card" role="dialog" aria-modal="true" aria-labelledby="setup-n-model-h">
+        <button class="setup-close" data-close-setup aria-label="Close setup">×</button>
+        <h3 id="setup-n-model-h">Setup: N-Model</h3>
+        <p>
+          Two queues are served by two servers in an "N" topology (Harrison&nbsp;1998). Server&nbsp;1 is <strong>dedicated</strong> to queue&nbsp;1
+          and processes class-1 customers at rate &mu;<sub>11</sub>. Server&nbsp;2 is <strong>flexible</strong>: it can serve queue&nbsp;1 at rate
+          &mu;<sub>21</sub> or queue&nbsp;2 at rate &mu;<sub>22</sub>. The routing of server&nbsp;2 is the agent's control.
+        </p>
+        <p>
+          Arrivals follow independent Poisson processes with rates &lambda;<sub>1</sub>, &lambda;<sub>2</sub>. Performance is the time-averaged
+          holding cost <code>(1/T) &int;<sub>0</sub><sup>T</sup> (h<sub>1</sub>q<sub>1</sub>(t) + h<sub>2</sub>q<sub>2</sub>(t)) dt</code>.
+          The asymmetric holding costs make queue&nbsp;1 substantially more expensive to leave congested, which motivates routing the flexible
+          server toward it. Service is preemptive and servers are work-conserving.
+        </p>
+
+        <h4>Parameters</h4>
+        <div class="param-grid">
+          <div class="param"><div class="param-k">&lambda;<sub>1</sub>, &lambda;<sub>2</sub></div><div class="param-v">0.9, 0.8</div></div>
+          <div class="param"><div class="param-k">&mu;<sub>11</sub>, &mu;<sub>21</sub>, &mu;<sub>22</sub></div><div class="param-v">1.0, 1.0, 1.0</div></div>
+          <div class="param"><div class="param-k">h<sub>1</sub>, h<sub>2</sub></div><div class="param-v">10, 1</div></div>
+          <div class="param"><div class="param-k">Buffer q<sub>max</sub></div><div class="param-v">300</div></div>
+        </div>
+
+        <h4>Service-rate surge (added perturbation)</h4>
+        <p>During the window t&nbsp;&isin;&nbsp;[0.35T, 0.70T] with horizon T&nbsp;=&nbsp;1500, the flexible server's rate for queue&nbsp;1 drops to
+          40% of nominal: &mu;<sub>21</sub>&nbsp;&rarr;&nbsp;0.4&middot;&mu;<sub>21</sub>. Outside this window, parameters revert to the stationary baseline.
+          The disruption is exposed through the time component of the state, yet it is invisible to a static threshold rule that conditions only on instantaneous queue lengths.</p>
+
+        <h4>Baselines</h4>
+        <ul class="bullet">
+          <li><strong>DP optimal:</strong> exact dynamic-programming optimum on the bounded state space; provides a ground-truth lower bound (stationary setting only).</li>
+          <li><strong>Static threshold:</strong> route server&nbsp;2 to queue&nbsp;1 whenever q<sub>1</sub>&gt;5. Asymptotically optimal under heavy-traffic scaling (Harrison&nbsp;1998).</li>
+          <li><strong>Random:</strong> uniform work-conserving.</li>
+          <li><strong>PPO:</strong> Proximal Policy Optimization (Dai &amp; Gluzman 2022).</li>
+        </ul>
+
+        <h4>Evaluation</h4>
+        <p>All simulation-based estimates are reported with 95% half-widths over 500 independent evaluation trajectories.</p>
+      </div>
+    </div>
+
+    <!-- ===== 5.3 ALGORITHMS ===== -->
+    <section id="exp-algorithms" class="panel">
+      <div class="panel-header">
+        <div>
+          <h1>Comparing algorithmic families</h1>
+        </div>
+      </div>
+
+      <!-- Setup card -->
+      <div class="card setup-card">
+        <div class="setup-grid setup-grid-wide">
+          <div class="setup-text">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>Comparison</div>
+            <h2 class="setup-title">How fast can different learners reach the optimum?</h2>
+            <p>
+              We benchmark four representative learning-based algorithms on the <strong>N-model in its stationary setting</strong>
+              (the same regime where we know the dynamic-programming optimum exactly). All four are scored on a shared environment
+              with hyperparameters grid-tuned per method, so differences reflect the algorithms themselves rather than tuning effort.
+            </p>
+            <p>
+              The methods differ in what information they ask of the simulator: <em>black-box</em> methods (PPO, REINFORCE) see
+              only state, action, and a scalar reward; the <em>pathwise</em> estimator backpropagates through a differentiable
+              discrete-event simulator. That structural information is what makes the comparison interesting.
+            </p>
+            <div class="setup-q">
+              <div class="setup-q-label">The question</div>
+              <p>Which family converges fastest, and how much of the advantage comes from the information interface?</p>
+            </div>
+            <button type="button" class="info-link info-link-inline" data-open-setup="setup-n-model">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="8.01"/><polyline points="11 12 12 12 12 16 13 16"/>
+              </svg>
+              <span>N-Model parameters &amp; protocol</span>
+            </button>
+          </div>
+
+          <div class="setup-diagrams">
+            <div class="algo-grid">
+              <div class="algo-card" tabindex="0">
+                <div class="algo-card-head">
+                  <span class="algo-badge algo-badge-ppo">PPO</span>
+                  <div class="algo-titles">
+                    <div class="algo-name">Proximal Policy Optimization</div>
+                    <div class="algo-sub">Black-box · clipped objective</div>
+                  </div>
+                </div>
+                <div class="algo-card-detail">
+                  <div class="algo-detail-row"><span>Info interface</span><strong>Black-box (s, a, r)</strong></div>
+                  <div class="algo-detail-row"><span>Gradient type</span><strong>Score function, clipped</strong></div>
+                  <div class="algo-detail-row"><span>Sample efficiency</span><strong>Medium</strong></div>
+                  <div class="algo-detail-row"><span>Estimator variance</span><strong>Low (advantage normalised)</strong></div>
+                  <div class="algo-detail-row"><span>Reference</span><strong>Schulman et&nbsp;al.&nbsp;2017</strong></div>
+                </div>
+              </div>
+
+              <div class="algo-card" tabindex="0">
+                <div class="algo-card-head">
+                  <span class="algo-badge algo-badge-pathwise">Pathwise</span>
+                  <div class="algo-titles">
+                    <div class="algo-name">Pathwise gradient</div>
+                    <div class="algo-sub">Differentiable discrete-event simulator</div>
+                  </div>
+                </div>
+                <div class="algo-card-detail">
+                  <div class="algo-detail-row"><span>Info interface</span><strong>Gradients through dynamics</strong></div>
+                  <div class="algo-detail-row"><span>Gradient type</span><strong>Pathwise (reparameterised)</strong></div>
+                  <div class="algo-detail-row"><span>Sample efficiency</span><strong>High</strong></div>
+                  <div class="algo-detail-row"><span>Estimator variance</span><strong>Very low</strong></div>
+                  <div class="algo-detail-row"><span>Reference</span><strong>Che et&nbsp;al.&nbsp;2024</strong></div>
+                </div>
+              </div>
+
+              <div class="algo-card" tabindex="0">
+                <div class="algo-card-head">
+                  <span class="algo-badge algo-badge-rb">REINFORCE</span>
+                  <div class="algo-titles">
+                    <div class="algo-name">REINFORCE, batch baseline</div>
+                    <div class="algo-sub">Score-function · batch-mean control variate</div>
+                  </div>
+                </div>
+                <div class="algo-card-detail">
+                  <div class="algo-detail-row"><span>Info interface</span><strong>Black-box (s, a, r)</strong></div>
+                  <div class="algo-detail-row"><span>Gradient type</span><strong>Score function</strong></div>
+                  <div class="algo-detail-row"><span>Sample efficiency</span><strong>Low</strong></div>
+                  <div class="algo-detail-row"><span>Estimator variance</span><strong>Moderate (batch-mean reduces it)</strong></div>
+                  <div class="algo-detail-row"><span>Reference</span><strong>Williams 1992</strong></div>
+                </div>
+              </div>
+
+              <div class="algo-card" tabindex="0">
+                <div class="algo-card-head">
+                  <span class="algo-badge algo-badge-rn">REINFORCE</span>
+                  <div class="algo-titles">
+                    <div class="algo-name">REINFORCE, no baseline</div>
+                    <div class="algo-sub">Score-function · raw returns</div>
+                  </div>
+                </div>
+                <div class="algo-card-detail">
+                  <div class="algo-detail-row"><span>Info interface</span><strong>Black-box (s, a, r)</strong></div>
+                  <div class="algo-detail-row"><span>Gradient type</span><strong>Score function</strong></div>
+                  <div class="algo-detail-row"><span>Sample efficiency</span><strong>Low</strong></div>
+                  <div class="algo-detail-row"><span>Estimator variance</span><strong>High</strong></div>
+                  <div class="algo-detail-row"><span>Reference</span><strong>Williams 1992</strong></div>
+                </div>
+              </div>
+            </div>
+            <div class="algo-hint">Hover or focus a card to see the details.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main result: training curves -->
+      <div class="card">
+        <div class="card-head">
+          <h3>Result: sample complexity</h3>
+          <p class="card-sub">Cost rate vs. PPO updates on the N-model stationary setting. Each line is the best-tuned configuration for that algorithm; the dashed line is the DP optimum (30.785).</p>
+        </div>
+        <figure class="zoom-fig algo-fig">
+          <img src="assets/figures/algo_compare.png" alt="Training curves for four algorithms on the N-model" />
+        </figure>
+        <div class="regime-result regime-result-good">
+          <div class="regime-result-label">The result</div>
+          <p>The pathwise gradient estimator reaches the DP optimum substantially faster than the score-function methods. REINFORCE variants approach the optimum more slowly and with higher variance, but eventually get there given enough simulator budget.</p>
+        </div>
+      </div>
+
+      <!-- Takeaways -->
+      <div class="card takeaways-card">
+        <div class="card-head"><h3>Takeaways</h3></div>
+        <div class="takeaways">
+          <div class="takeaway">
+            <div class="takeaway-num">1</div>
+            <div class="takeaway-body">
+              <div class="takeaway-h">Information interface matters</div>
+              <p>The pathwise estimator's advantage stems from access to simulator gradients, not network architecture. Black-box methods cannot match it on this environment.</p>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-num">2</div>
+            <div class="takeaway-body">
+              <div class="takeaway-h">A shared environment enables methodological claims</div>
+              <p>Without a common testbed and protocol, sample-complexity improvements are hard to validate. Benchmarks make those claims falsifiable.</p>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-num">3</div>
+            <div class="takeaway-body">
+              <div class="takeaway-h">One instance is not enough</div>
+              <p>The relative ordering can shift with horizon and regime; we report the stationary N-model here, but other settings may rank algorithms differently.</p>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-num">4</div>
+            <div class="takeaway-body">
+              <div class="takeaway-h">Tuning cost is itself a comparison axis</div>
+              <p>The configurations shown were each grid-searched. Methods that need less tuning are easier to adopt, a dimension separate from sample efficiency.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HYPERPARAMS ===== -->
+    <section id="exp-hyperparams" class="panel">
+      <div class="panel-header">
+        <div>
+          <h1>Hyperparameter sensitivity</h1>
+        </div>
+      </div>
+
+      <!-- Setup card -->
+      <div class="card setup-card">
+        <div class="setup-grid">
+          <div class="setup-text">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>Tuning</div>
+            <h2 class="setup-title">Which choices drive performance, and which only stabilise it?</h2>
+            <p>
+              Modern learning-based methods come with many tunable hyperparameters: learning rate, batch size, gradient-clipping threshold,
+              network architecture, activation function, entropy coefficient. Different defaults are reported across the literature with little
+              a priori basis for choosing among them.
+            </p>
+            <p>
+              We run two sweeps on the <strong>two-class single-server queue with slowdown</strong>. First, a small sweep (Configs A&ndash;E)
+              on a single instance to show how much the choice of configuration alone matters. Second, a larger sweep
+              (Configs 1&ndash;12) across <em>five</em> slowdown instances, normalising each cell by the best configuration on that instance.
+            </p>
+            <div class="setup-q">
+              <div class="setup-q-label">The question</div>
+              <p>Are hyperparameter rankings consistent across instances, and which choices merely stabilise training versus drive final performance?</p>
+            </div>
+            <button type="button" class="info-link info-link-inline" data-open-setup="setup-two-class">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="8.01"/><polyline points="11 12 12 12 12 16 13 16"/>
+              </svg>
+              <span>Two-class queue parameters &amp; protocol</span>
+            </button>
+          </div>
+
+          <div class="setup-diagrams">
+            <div class="base-card">
+              <div class="base-card-head">
+                <span class="base-pill">BASE</span>
+                <div class="base-titles">
+                  <div class="base-title">PPO base configuration</div>
+                  <div class="base-sub">Starting point all sweeps perturb from</div>
+                </div>
+              </div>
+              <div class="base-grid">
+                <div class="base-kv"><span class="base-k">learning rate</span><span class="base-v">3e-4</span></div>
+                <div class="base-kv"><span class="base-k">batch size</span><span class="base-v">2048</span></div>
+                <div class="base-kv"><span class="base-k">PPO epochs</span><span class="base-v">10</span></div>
+                <div class="base-kv"><span class="base-k">clip range</span><span class="base-v">0.2</span></div>
+                <div class="base-kv"><span class="base-k">entropy coef</span><span class="base-v">0.01</span></div>
+                <div class="base-kv"><span class="base-k">LR schedule</span><span class="base-v">constant</span></div>
+                <div class="base-kv"><span class="base-k">activation</span><span class="base-v">ReLU</span></div>
+                <div class="base-kv"><span class="base-k">grad clip</span><span class="base-v">0.5</span></div>
+              </div>
+              <div class="base-foot">Every sweep below perturbs a small subset of these.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result 1: Configs A-E on one instance -->
+      <div class="card">
+        <div class="card-head">
+          <h3>Sweep A&ndash;E on a single instance</h3>
+          <p class="card-sub">Symmetric tight slowdown, k₁=k₂=10. Final cost rates differ by more than 2× across configurations.</p>
+        </div>
+        <div class="hp-grid">
+          <figure class="zoom-fig hp-fig">
+            <img src="assets/figures/hyperparam_curves.png" alt="Evaluation curves for several PPO hyperparameter configurations" />
+          </figure>
+          <div class="config-legend">
+            <div class="config-legend-h">Hover a config to see what changed</div>
+            <div class="config-row" tabindex="0">
+              <span class="config-badge config-A">A</span>
+              <div class="config-titles">
+                <div class="config-name">Base</div>
+                <div class="config-sub">Reference run</div>
+              </div>
+              <div class="config-detail">
+                <div class="config-detail-row"><span>lr</span><strong>3e-4</strong></div>
+                <div class="config-detail-row"><span>batch size</span><strong>2048</strong></div>
+                <div class="config-detail-row"><span>PPO epochs</span><strong>10</strong></div>
+                <div class="config-detail-row"><span>notes</span><strong>matches the base config</strong></div>
+              </div>
+            </div>
+            <div class="config-row" tabindex="0">
+              <span class="config-badge config-B">B</span>
+              <div class="config-titles">
+                <div class="config-name">Higher LR</div>
+                <div class="config-sub">lr 3×</div>
+              </div>
+              <div class="config-detail">
+                <div class="config-detail-row"><span>lr</span><strong>1e-3 <em>(vs 3e-4)</em></strong></div>
+                <div class="config-detail-row"><span>batch size</span><strong>2048</strong></div>
+                <div class="config-detail-row"><span>PPO epochs</span><strong>10</strong></div>
+                <div class="config-detail-row"><span>notes</span><strong>faster but unstable</strong></div>
+              </div>
+            </div>
+            <div class="config-row" tabindex="0">
+              <span class="config-badge config-C">C</span>
+              <div class="config-titles">
+                <div class="config-name">Bigger batches</div>
+                <div class="config-sub">batch size 4×</div>
+              </div>
+              <div class="config-detail">
+                <div class="config-detail-row"><span>lr</span><strong>3e-4</strong></div>
+                <div class="config-detail-row"><span>batch size</span><strong>8192 <em>(vs 2048)</em></strong></div>
+                <div class="config-detail-row"><span>PPO epochs</span><strong>10</strong></div>
+                <div class="config-detail-row"><span>notes</span><strong>smoother, slower</strong></div>
+              </div>
+            </div>
+            <div class="config-row" tabindex="0">
+              <span class="config-badge config-D">D</span>
+              <div class="config-titles">
+                <div class="config-name">More PPO epochs</div>
+                <div class="config-sub">30 vs 10 per update</div>
+              </div>
+              <div class="config-detail">
+                <div class="config-detail-row"><span>lr</span><strong>3e-4</strong></div>
+                <div class="config-detail-row"><span>batch size</span><strong>2048</strong></div>
+                <div class="config-detail-row"><span>PPO epochs</span><strong>30 <em>(vs 10)</em></strong></div>
+                <div class="config-detail-row"><span>notes</span><strong>more compute per sample</strong></div>
+              </div>
+            </div>
+            <div class="config-row" tabindex="0">
+              <span class="config-badge config-E">E</span>
+              <div class="config-titles">
+                <div class="config-name">Tiny LR</div>
+                <div class="config-sub">lr 30× smaller</div>
+              </div>
+              <div class="config-detail">
+                <div class="config-detail-row"><span>lr</span><strong>1e-5 <em>(vs 3e-4)</em></strong></div>
+                <div class="config-detail-row"><span>batch size</span><strong>2048</strong></div>
+                <div class="config-detail-row"><span>PPO epochs</span><strong>10</strong></div>
+                <div class="config-detail-row"><span>notes</span><strong>under-trains within budget</strong></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="regime-result">
+          <div class="regime-result-label">The result</div>
+          <p>The gaps are large enough that a single-instance experiment with an unfortunate hyperparameter choice could plausibly be misread as evidence that <em>PPO</em> is uncompetitive on this instance, when in fact a different configuration of the same algorithm is.</p>
+        </div>
+      </div>
+
+      <!-- Result 2: Configs 1-12 across 5 instances -->
+      <div class="card">
+        <div class="card-head">
+          <h3>Sweep 1&ndash;12 across the instance family</h3>
+          <p class="card-sub">Twelve configurations × five slowdown instances. Each cell is normalised by the best configuration on that instance. Hover any cell to see what's in that config.</p>
+        </div>
+        <div class="hpmat-wrap">
+          <div class="hpmat-grid" id="hpMatrix" aria-label="Hyperparameter sensitivity matrix"></div>
+          <div class="hpmat-detail" id="hpMatrixDetail">
+            <div class="hpmat-detail-h">Drilldown</div>
+            <div class="hpmat-detail-body">Hover a cell to see the config (relative to the base) and the cost ratio.</div>
+          </div>
+        </div>
+        <div class="regime-result">
+          <div class="regime-result-label">The result</div>
+          <p>The winner on k₁=8, k₂=25 is <strong>not</strong> the winner on k₁=k₂=10. A practitioner tuning on a single instance over-fits to that instance's idiosyncrasies; reporting sweeps on a single instance may overstate the robustness of any individual claim.</p>
+        </div>
+      </div>
+
+      <!-- ReLU vs Tanh -->
+      <div class="card">
+        <div class="card-head">
+          <h3>Some hyperparameters stabilise, others swing</h3>
+          <p class="card-sub">Top-3 ReLU vs. Tanh configurations on two slowdown instances. ReLU produces tighter clusters across the surrounding hyperparameter sweep.</p>
+        </div>
+        <figure class="zoom-fig hp-fig-wide">
+          <img src="assets/figures/relu_vs_tanh.png" alt="Training curves under ReLU and Tanh activations on two slowdown instances" />
+        </figure>
+        <div class="regime-result regime-result-good">
+          <div class="regime-result-label">The result</div>
+          <p>ReLU acts as a <em>stabilising element</em> rather than merely an architectural detail. The activation choice tightens the cluster of nearby configurations, so other hyperparameters matter less when ReLU is fixed.</p>
+        </div>
+      </div>
+
+      <!-- Takeaways -->
+      <div class="card takeaways-card">
+        <div class="card-head"><h3>Takeaways</h3></div>
+        <div class="takeaways">
+          <div class="takeaway">
+            <div class="takeaway-num">1</div>
+            <div class="takeaway-body">
+              <div class="takeaway-h">Single-instance tuning over-fits</div>
+              <p>The winning configuration on one instance can be 2.5× worse on another. Practitioners who tune on one instance bake in idiosyncrasies of that instance.</p>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-num">2</div>
+            <div class="takeaway-body">
+              <div class="takeaway-h">Some choices are stabilisers</div>
+              <p>ReLU vs. Tanh in this study isn't just an architectural detail. Stabilisers reduce sensitivity to the rest of the configuration and can be fixed without further tuning.</p>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-num">3</div>
+            <div class="takeaway-body">
+              <div class="takeaway-h">Report sweeps across instances, not within</div>
+              <p>An instance family is the natural setting for hyperparameter claims. Single-instance sweeps remain useful for ablations, not for robustness.</p>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-num">4</div>
+            <div class="takeaway-body">
+              <div class="takeaway-h">Tuning budget is itself a comparison axis</div>
+              <p>How much grid-search did a result need? Algorithms that need less tuning are more useful in practice, separate from how good they look at their peak.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== 5.5 MASKING ===== -->
+    <section id="exp-masking" class="panel">
+      <div class="panel-header">
+        <div>
+          <h1>Restricting the policy class</h1>
+        </div>
+      </div>
+
+      <!-- Setup card -->
+      <div class="card setup-card">
+        <div class="setup-grid setup-grid-wide">
+          <div class="setup-text">
+            <div class="eyebrow"><span class="eyebrow-dot"></span>Structure</div>
+            <h2 class="setup-title">Does encoding domain knowledge into the policy help?</h2>
+            <p>
+              A natural intuition in applying learning-based methods to operational problems is that incorporating structural knowledge
+              should improve performance. One concrete way to do this is to <strong>restrict the policy class</strong>: mask actions
+              that violate <em>work-conservation</em>, so the agent never sees the option of idling a server when work is available.
+            </p>
+            <p>
+              Reducing the search space should, in principle, accelerate learning and improve the quality of the converged policy.
+              We test this intuition on two environments we've already used as testbeds: the <strong>symmetric tight slowdown</strong>
+              instance of the two-class queue and the <strong>stationary N-model</strong>.
+            </p>
+            <div class="setup-q">
+              <div class="setup-q-label">The question</div>
+              <p>Does masking non-work-conserving actions speed up learning, or does the constraint distort the gradient signal?</p>
+            </div>
+            <button type="button" class="info-link info-link-inline" data-open-setup="setup-two-class">
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9"/><line x1="12" y1="8" x2="12" y2="8.01"/><polyline points="11 12 12 12 12 16 13 16"/>
+              </svg>
+              <span>Two-class queue parameters &amp; protocol</span>
+            </button>
+          </div>
+
+          <div class="setup-diagrams">
+            <div class="algo-grid">
+              <div class="algo-card" tabindex="0">
+                <div class="algo-card-head">
+                  <span class="algo-badge algo-badge-ppo">WITH MASK</span>
+                  <div class="algo-titles">
+                    <div class="algo-name">Work-conserving PPO</div>
+                    <div class="algo-sub">Domain knowledge baked in</div>
+                  </div>
+                </div>
+                <div class="algo-card-detail">
+                  <div class="algo-detail-row"><span>Policy class</span><strong>Work-conserving only</strong></div>
+                  <div class="algo-detail-row"><span>Idle action</span><strong>Masked out (forbidden)</strong></div>
+                  <div class="algo-detail-row"><span>Search space</span><strong>Smaller, structured</strong></div>
+                  <div class="algo-detail-row"><span>Intuition</span><strong>Should speed up learning</strong></div>
+                </div>
+              </div>
+
+              <div class="algo-card" tabindex="0">
+                <div class="algo-card-head">
+                  <span class="algo-badge algo-badge-pathwise">NO MASK</span>
+                  <div class="algo-titles">
+                    <div class="algo-name">Unrestricted PPO</div>
+                    <div class="algo-sub">Learn the constraint from rewards</div>
+                  </div>
+                </div>
+                <div class="algo-card-detail">
+                  <div class="algo-detail-row"><span>Policy class</span><strong>Full action space</strong></div>
+                  <div class="algo-detail-row"><span>Idle action</span><strong>Available, must be discovered as bad</strong></div>
+                  <div class="algo-detail-row"><span>Search space</span><strong>Larger, unstructured</strong></div>
+                  <div class="algo-detail-row"><span>Intuition</span><strong>Should be slower / less stable</strong></div>
+                </div>
+              </div>
+            </div>
+            <div class="algo-hint">Hover or focus a card for the variant's details.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result: training curves -->
+      <div class="card">
+        <div class="card-head">
+          <h3>Result: training curves on both environments</h3>
+          <p class="card-sub">Symmetric tight slowdown (left) and stationary N-model (right). Each pair compares PPO with and without the work-conservation mask.</p>
+        </div>
+        <figure class="zoom-fig mask-fig">
+          <img src="assets/figures/masking.png" alt="PPO with and without an action mask enforcing work-conservation" />
+        </figure>
+        <div class="regime-result">
+          <div class="regime-result-label">The result</div>
+          <p>In both environments the non-masked variant converges at least as quickly and reaches at least as low a final cost. The <em>masked</em> variant is the one with noticeably higher run-to-run variability, the opposite of the conventional intuition.</p>
+        </div>
+      </div>
+
+      <!-- Takeaways -->
+      <div class="card takeaways-card">
+        <div class="card-head"><h3>Takeaways</h3></div>
+        <div class="takeaways">
+          <div class="takeaway">
+            <div class="takeaway-num">1</div>
+            <div class="takeaway-body">
+              <div class="takeaway-h">"More structure helps" is not universal</div>
+              <p>The effect of structural restriction interacts with the algorithm and the environment. The intuition should be tested rather than assumed.</p>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-num">2</div>
+            <div class="takeaway-body">
+              <div class="takeaway-h">Constraints can distort gradients</div>
+              <p>A plausible explanation: the work-conservation constraint distorts the gradient signal in a way PPO's clipped objective handles less gracefully than alternative algorithms.</p>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-num">3</div>
+            <div class="takeaway-body">
+              <div class="takeaway-h">A benchmark makes this falsifiable</div>
+              <p>Whether the finding extends to other policy-gradient methods is exactly the kind of follow-up question a shared environment makes addressable, and reproducible.</p>
+            </div>
+          </div>
+          <div class="takeaway">
+            <div class="takeaway-num">4</div>
+            <div class="takeaway-body">
+              <div class="takeaway-h">Variance is a first-class measurement</div>
+              <p>The masked variant didn't lose on average cost; it lost on stability across runs. Reporting run-to-run variance is what surfaced this.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div>OR-Bench &middot; companion dashboard</div>
+      <div class="footer-meta">Click any figure to open the lightbox &middot; sortable tables &middot; interactive cross-instance matrix</div>
+    </footer>
+  </main>
+</div>
+
+<!-- ============================== LIGHTBOX ============================== -->
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" id="lbClose" aria-label="Close">×</button>
+  <button class="lb-prev" id="lbPrev" aria-label="Previous">‹</button>
+  <button class="lb-next" id="lbNext" aria-label="Next">›</button>
+  <div class="lb-stage">
+    <img id="lbImg" alt="" />
+    <div id="lbCap" class="lb-cap"></div>
+  </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

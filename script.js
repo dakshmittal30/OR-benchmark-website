@@ -250,20 +250,26 @@
   // ---------------------------------------------------------------------
   const hpGrid = $("#hpMatrix");
   if (hpGrid) {
-    const configs = [
-      { n: 1,  name: "Base",            tag: "ref",       diff: { notes: "matches the base config" } },
-      { n: 2,  name: "Higher LR",       tag: "lr ↑",      diff: { lr: "1e-3 (vs 3e-4)" } },
-      { n: 3,  name: "Lower LR",        tag: "lr ↓",      diff: { lr: "1e-4 (vs 3e-4)" } },
-      { n: 4,  name: "Linear LR decay", tag: "schedule",  diff: { "LR schedule": "linear decay (vs constant)" } },
-      { n: 5,  name: "Cosine LR",       tag: "schedule",  diff: { "LR schedule": "cosine (vs constant)" } },
-      { n: 6,  name: "Tighter clip",    tag: "clip ↓",    diff: { "clip range": "0.1 (vs 0.2)" } },
-      { n: 7,  name: "Looser clip",     tag: "clip ↑",    diff: { "clip range": "0.3 (vs 0.2)" } },
-      { n: 8,  name: "Tanh activation", tag: "activation", diff: { activation: "Tanh (vs ReLU)" } },
-      { n: 9,  name: "GELU activation", tag: "activation", diff: { activation: "GELU (vs ReLU)" } },
-      { n: 10, name: "Larger batch",    tag: "bs ↑",      diff: { "batch size": "8192 (vs 2048)" } },
-      { n: 11, name: "Smaller batch",   tag: "bs ↓",      diff: { "batch size": "512 (vs 2048)" } },
-      { n: 12, name: "No entropy",      tag: "ent ↓",     diff: { "entropy coef": "0.0 (vs 0.01)" } }
+    // 3 (lr) × 2 (clip) × 2 (batch) full factorial grid. All share:
+    //   activation = ReLU (vs Tanh in base), LR schedule = linear (vs cosine), hidden = 64.
+    const grid = [
+      [1e-5, 0.10,  50], [1e-5, 0.10, 200], [1e-5, 0.20,  50], [1e-5, 0.20, 200],
+      [1e-4, 0.10,  50], [1e-4, 0.10, 200], [1e-4, 0.20,  50], [1e-4, 0.20, 200],
+      [5e-4, 0.10,  50], [5e-4, 0.10, 200], [5e-4, 0.20,  50], [5e-4, 0.20, 200]
     ];
+    const fmtLr = (v) => v.toExponential(0).replace("+", "").replace("0", "");
+    const configs = grid.map(([lr, clip, batch], i) => ({
+      n: i + 1,
+      name: `lr ${fmtLr(lr)}`,
+      tag: `clip ${clip.toFixed(2)} · b ${batch}`,
+      diff: {
+        "lr policy":  `${fmtLr(lr)}  (base: 1e-4)`,
+        "clip ratio": `${clip.toFixed(2)}  (base: 0.20)`,
+        "episodes / batch": `${batch}  (base: 50)`,
+        "activation": "ReLU  (base: Tanh)",
+        "LR schedule": "linear  (base: cosine)"
+      }
+    }));
 
     const instances = [
       { label: "k₁=8\nk₂=25" },

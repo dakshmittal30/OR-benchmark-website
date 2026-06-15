@@ -1226,16 +1226,20 @@
                 </div>
               </div>
               <div class="base-grid">
-                <div class="base-kv"><span class="base-k">learning rate</span><span class="base-v">3e-4</span></div>
-                <div class="base-kv"><span class="base-k">batch size</span><span class="base-v">2048</span></div>
-                <div class="base-kv"><span class="base-k">PPO epochs</span><span class="base-v">10</span></div>
-                <div class="base-kv"><span class="base-k">clip range</span><span class="base-v">0.2</span></div>
-                <div class="base-kv"><span class="base-k">entropy coef</span><span class="base-v">0.01</span></div>
-                <div class="base-kv"><span class="base-k">LR schedule</span><span class="base-v">constant</span></div>
-                <div class="base-kv"><span class="base-k">activation</span><span class="base-v">ReLU</span></div>
-                <div class="base-kv"><span class="base-k">grad clip</span><span class="base-v">0.5</span></div>
+                <div class="base-kv"><span class="base-k">lr<sub>policy</sub></span><span class="base-v">1e-4</span></div>
+                <div class="base-kv"><span class="base-k">lr<sub>value</sub></span><span class="base-v">3e-4</span></div>
+                <div class="base-kv"><span class="base-k">episodes / batch</span><span class="base-v">50</span></div>
+                <div class="base-kv"><span class="base-k">update epochs</span><span class="base-v">3</span></div>
+                <div class="base-kv"><span class="base-k">clip ratio</span><span class="base-v">0.2</span></div>
+                <div class="base-kv"><span class="base-k">entropy coef</span><span class="base-v">0.05 → 0.005</span></div>
+                <div class="base-kv"><span class="base-k">LR schedule</span><span class="base-v">cosine</span></div>
+                <div class="base-kv"><span class="base-k">activation</span><span class="base-v">Tanh</span></div>
+                <div class="base-kv"><span class="base-k">hidden size</span><span class="base-v">64</span></div>
+                <div class="base-kv"><span class="base-k">max grad norm</span><span class="base-v">1.0</span></div>
+                <div class="base-kv"><span class="base-k">γ</span><span class="base-v">0.998</span></div>
+                <div class="base-kv"><span class="base-k">GAE λ</span><span class="base-v">0.99</span></div>
               </div>
-              <div class="base-foot">Every sweep below perturbs a small subset of these.</div>
+              <div class="base-foot">Each sweep below perturbs a small subset of these.</div>
             </div>
           </div>
         </div>
@@ -1256,66 +1260,59 @@
             <div class="config-row" tabindex="0">
               <span class="config-badge config-A">A</span>
               <div class="config-titles">
-                <div class="config-name">Base</div>
-                <div class="config-sub">Reference run</div>
+                <div class="config-name">relu_clip_decay</div>
+                <div class="config-sub">activation + LR + clip swept</div>
               </div>
               <div class="config-detail">
-                <div class="config-detail-row"><span>lr</span><strong>3e-4</strong></div>
-                <div class="config-detail-row"><span>batch size</span><strong>2048</strong></div>
-                <div class="config-detail-row"><span>PPO epochs</span><strong>10</strong></div>
-                <div class="config-detail-row"><span>notes</span><strong>matches the base config</strong></div>
+                <div class="config-detail-row"><span>activation</span><strong>ReLU <em>(vs Tanh)</em></strong></div>
+                <div class="config-detail-row"><span>lr<sub>policy</sub></span><strong>5e-4 <em>(vs 1e-4)</em></strong></div>
+                <div class="config-detail-row"><span>lr<sub>value</sub></span><strong>constant <em>(vs decayed)</em></strong></div>
+                <div class="config-detail-row"><span>LR schedule</span><strong>linear <em>(vs cosine)</em></strong></div>
+                <div class="config-detail-row"><span>clip decay</span><strong>on <em>(vs off)</em></strong></div>
+                <div class="config-detail-row"><span>obs scale</span><strong>1.0 <em>(vs 20.0)</em></strong></div>
               </div>
             </div>
             <div class="config-row" tabindex="0">
               <span class="config-badge config-B">B</span>
               <div class="config-titles">
-                <div class="config-name">Higher LR</div>
-                <div class="config-sub">lr 3×</div>
+                <div class="config-name">hidden_128</div>
+                <div class="config-sub">wider policy network</div>
               </div>
               <div class="config-detail">
-                <div class="config-detail-row"><span>lr</span><strong>1e-3 <em>(vs 3e-4)</em></strong></div>
-                <div class="config-detail-row"><span>batch size</span><strong>2048</strong></div>
-                <div class="config-detail-row"><span>PPO epochs</span><strong>10</strong></div>
-                <div class="config-detail-row"><span>notes</span><strong>faster but unstable</strong></div>
+                <div class="config-detail-row"><span>hidden size</span><strong>128 <em>(vs 64)</em></strong></div>
+                <div class="config-detail-row"><span>notes</span><strong>everything else at base</strong></div>
               </div>
             </div>
             <div class="config-row" tabindex="0">
               <span class="config-badge config-C">C</span>
               <div class="config-titles">
-                <div class="config-name">Bigger batches</div>
-                <div class="config-sub">batch size 4×</div>
+                <div class="config-name">baseline</div>
+                <div class="config-sub">reference run</div>
               </div>
               <div class="config-detail">
-                <div class="config-detail-row"><span>lr</span><strong>3e-4</strong></div>
-                <div class="config-detail-row"><span>batch size</span><strong>8192 <em>(vs 2048)</em></strong></div>
-                <div class="config-detail-row"><span>PPO epochs</span><strong>10</strong></div>
-                <div class="config-detail-row"><span>notes</span><strong>smoother, slower</strong></div>
+                <div class="config-detail-row"><span>config</span><strong>matches the base</strong></div>
               </div>
             </div>
             <div class="config-row" tabindex="0">
               <span class="config-badge config-D">D</span>
               <div class="config-titles">
-                <div class="config-name">More PPO epochs</div>
-                <div class="config-sub">30 vs 10 per update</div>
+                <div class="config-name">epochs_1</div>
+                <div class="config-sub">fewer PPO epochs per update</div>
               </div>
               <div class="config-detail">
-                <div class="config-detail-row"><span>lr</span><strong>3e-4</strong></div>
-                <div class="config-detail-row"><span>batch size</span><strong>2048</strong></div>
-                <div class="config-detail-row"><span>PPO epochs</span><strong>30 <em>(vs 10)</em></strong></div>
-                <div class="config-detail-row"><span>notes</span><strong>more compute per sample</strong></div>
+                <div class="config-detail-row"><span>update epochs</span><strong>1 <em>(vs 3)</em></strong></div>
+                <div class="config-detail-row"><span>notes</span><strong>under-trains within budget</strong></div>
               </div>
             </div>
             <div class="config-row" tabindex="0">
               <span class="config-badge config-E">E</span>
               <div class="config-titles">
-                <div class="config-name">Tiny LR</div>
-                <div class="config-sub">lr 30× smaller</div>
+                <div class="config-name">small_batch</div>
+                <div class="config-sub">5× fewer episodes per batch</div>
               </div>
               <div class="config-detail">
-                <div class="config-detail-row"><span>lr</span><strong>1e-5 <em>(vs 3e-4)</em></strong></div>
-                <div class="config-detail-row"><span>batch size</span><strong>2048</strong></div>
-                <div class="config-detail-row"><span>PPO epochs</span><strong>10</strong></div>
-                <div class="config-detail-row"><span>notes</span><strong>under-trains within budget</strong></div>
+                <div class="config-detail-row"><span>episodes / batch</span><strong>10 <em>(vs 50)</em></strong></div>
+                <div class="config-detail-row"><span>notes</span><strong>noisy gradients, fails to converge</strong></div>
               </div>
             </div>
           </div>
@@ -1330,7 +1327,7 @@
       <div class="card">
         <div class="card-head">
           <h3>Sweep 1&ndash;12 across the instance family</h3>
-          <p class="card-sub">Twelve configurations × five slowdown instances. Each cell is normalised by the best configuration on that instance. Hover any cell to see what's in that config.</p>
+          <p class="card-sub">A 3 × 2 × 2 factorial over <code>lr<sub>policy</sub></code> ∈ {1e-5, 1e-4, 5e-4}, <code>clip ratio</code> ∈ {0.10, 0.20}, and <code>episodes / batch</code> ∈ {50, 200}. All twelve share ReLU activation and a linear LR schedule. Each cell is normalised by the best configuration on that instance; hover any cell to see what's in that config.</p>
         </div>
         <div class="hpmat-wrap">
           <div class="hpmat-grid" id="hpMatrix" aria-label="Hyperparameter sensitivity matrix"></div>
